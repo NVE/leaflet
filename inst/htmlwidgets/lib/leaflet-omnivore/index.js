@@ -2,7 +2,7 @@ var xhr = require('corslite'),
     csv2geojson = require('csv2geojson'),
     wellknown = require('wellknown'),
     polyline = require('polyline'),
-    topojson = require('topojson'),
+    topojson = require('topojson/topojson.js'),
     toGeoJSON = require('togeojson');
 
 module.exports.polyline = polylineLoad;

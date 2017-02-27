@@ -1,12 +1,11 @@
-  LeafletWidget.methods.addTerminator = function(resolution, time,
-  layerId, group, options) {
+  LeafletWidget.methods.addTerminator = function(resolution, time, layerId, group) {
     (function() {
       this.layerManager.addLayer(
-        L.terminator($.extend({
+        L.terminator({
           resolution: resolution,
           time: time,
           group: group
-        }, options || {})),
+        }),
         'shape', layerId, group);
     }).call(this);
   };

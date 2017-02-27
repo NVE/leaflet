@@ -1,43 +1,3 @@
-leaflet 1.1.0
---------------------------------------------------------------------------------
-
-* Add support for sf. sf, sfc, and sfg classes are supported with POINT,
-  LINESTRING, MULTILINESTRING, POLYGON, and MULTIPOLYGON geometries (note
-  that MULTIPOINT is not currently supported).
-
-* Added support for Crosstalk (https://rstudio.github.io/crosstalk/).
-
-* Added option to highlight polygons, polylines, circles, and rectangles on
-  hover (use highlightOptions parameter).
-
-* Fix behavior when data contains NA points, or zero rows. Previously this would
-  cause an error.
-
-* Added `popupOptions` parameter to all markers and shape layers.
-
-* Upgraded existing plugins to their respective latest versions and added
-  missing/new functionality from those plugins. (PR #293)
-
-* Added Proj4Leaflet plugin (PR #294).
-
-* Added EasyButton plugin (PR #295).
-
-* Added Graticule plugin (PR #293).
-
-* Color palette improvements. All color palette functions now support viridis
-  palettes ("viridis", "magma", "inferno", and "plasma").
-
-* Color palette functions now support reversing the order in which colors are
-  used, via reverse=TRUE.
-
-* `colorFactor` no longer interpolates qualitative RColorBrewer palettes,
-  unless the number of factor levels being mapped exceeds the number of colors
-  in the specified RColorBrewer palette. (Issue #300)
-
-* Upgrade leaflet.js to 0.7.7.1 (PR #359)
-
-* Added a way for the Map instance to be instantiated via a factory.
-
 leaflet 1.0.2
 --------------------------------------------------------------------------------
 
@@ -81,6 +41,9 @@ leaflet 1.0.1
 
 * Fix #242: Compatibility with htmlwidgets 0.6 (thanks byzheng).
 
+
+* Add heatmap functionality based on modified version of Leaflet.heat plugin.
+  (Thanks, Kenton Russell!)
 
 leaflet 1.0.0
 --------------------------------------------------------------------------------

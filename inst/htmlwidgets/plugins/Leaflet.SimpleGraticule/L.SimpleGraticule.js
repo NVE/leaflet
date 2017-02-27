@@ -8,8 +8,7 @@ L.SimpleGraticule = L.LayerGroup.extend({
         interval: 20,
         showOriginLabel: true,
         redraw: 'move',
-        hidden: false,
-        zoomIntervals : []
+        hidden: false
     },
 
     lineStyle: {
@@ -17,8 +16,7 @@ L.SimpleGraticule = L.LayerGroup.extend({
         color: '#111',
         opacity: 0.6,
         weight: 1,
-        interactive: false,
-        clickable: false //legacy support
+        clickable: false
     },
 
     initialize: function(options) {
@@ -56,16 +54,6 @@ L.SimpleGraticule = L.LayerGroup.extend({
         this.clearLayers();
 
         if (!this.options.hidden) {
-
-            var currentZoom = this._map.getZoom();
-
-            for(var i = 0 ; i < this.options.zoomIntervals.length ; i++) {
-                if(currentZoom >= this.options.zoomIntervals[i].start && currentZoom <= this.options.zoomIntervals[i].end){
-                    this.options.interval = this.options.zoomIntervals[i].interval;
-                    break;
-                }
-            }
-
             this.constructLines(this.getMins(), this.getLineCounts());
 
             if (this.options.showOriginLabel) {
@@ -140,8 +128,7 @@ L.SimpleGraticule = L.LayerGroup.extend({
         }
 
         return L.marker(latLng, {
-            interactive: false,
-            clickable: false, //legacy support
+            clickable: false,
             icon: L.divIcon({
                 iconSize: [0, 0],
                 className: 'leaflet-grid-label',
@@ -152,8 +139,7 @@ L.SimpleGraticule = L.LayerGroup.extend({
 
     addOriginLabel: function() {
         return L.marker([0, 0], {
-            interactive: false,
-            clickable: false, //legacy support
+            clickable: false,
             icon: L.divIcon({
                 iconSize: [0, 0],
                 className: 'leaflet-grid-label',

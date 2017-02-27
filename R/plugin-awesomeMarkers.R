@@ -2,7 +2,7 @@ leafletAwesomeMarkersDependencies <- function() {
   list(
     htmltools::htmlDependency(
       "leaflet-awesomemarkers",
-      "2.0.3",
+      "2.0.2",
       system.file("htmlwidgets/plugins/Leaflet.awesome-markers", package = "leaflet"),
       script = c('leaflet.awesome-markers.min.js'),
       stylesheet = c('leaflet.awesome-markers.css')
@@ -13,8 +13,8 @@ leafletAwesomeMarkersDependencies <- function() {
 leafletAmBootstrapDependencies <- function(map) {
   list(
     htmltools::htmlDependency(
-      "bootstrap",
-      "3.3.7",
+      "awesomemarkers-bootstrap",
+      "3.3.5",
       system.file("htmlwidgets/plugins/Leaflet.awesome-markers", package = "leaflet"),
       script = c('bootstrap.min.js'),
       stylesheet = c('bootstrap.min.css')
@@ -32,8 +32,8 @@ addBootstrap <- function(map) {
 leafletAmFontAwesomeDependencies <- function(map) {
   list(
     htmltools::htmlDependency(
-      "fontawesome",
-      "4.7.0",
+      "awesomemarkers-fontawesome",
+      "4.4.0",
       system.file("htmlwidgets/plugins/Leaflet.awesome-markers", package = "leaflet"),
       stylesheet = c('font-awesome.min.css')
     )
@@ -50,8 +50,8 @@ addFontAwesome <- function(map) {
 leafletAmIonIconDependencies <- function(map) {
   list(
     htmltools::htmlDependency(
-      "ionicons",
-      "2.0.1",
+      "awesomemarkers-ionicons",
+      "2.0.0",
       system.file("htmlwidgets/plugins/Leaflet.awesome-markers", package = "leaflet"),
       stylesheet = c('ionicons.min.css')
     )
@@ -77,7 +77,7 @@ addIonIcon <- function(map) {
 #' )
 #'
 #' iconSet[c('home', 'flag')]
-awesomeIconList <- function(...) {
+awesomeIconList = function(...) {
   res = structure(
     list(...),
     class = "leaflet_awesome_icon_set"
@@ -89,7 +89,7 @@ awesomeIconList <- function(...) {
 }
 
 #' @export
-`[.leaflet_awesome_icon_set` <- function(x, i) {
+`[.leaflet_awesome_icon_set` = function(x, i) {
   if (is.factor(i)) {
     i = as.character(i)
   }
@@ -101,7 +101,7 @@ awesomeIconList <- function(...) {
   structure(.subset(x, i), class = "leaflet_awesome_icon_set")
 }
 
-awesomeIconSetToAwesomeIcons <- function(x) {
+awesomeIconSetToAwesomeIcons = function(x) {
   # c("icon", "library", ...)
   cols = names(formals(makeAwesomeIcon))
   # list(icon = "icon", library = "library", ...)
@@ -135,22 +135,15 @@ makeAwesomeIcon <- function(
   markerColor = "blue",
   iconColor = "white",
   spin = FALSE,
-  extraClasses = NULL,
-  squareMarker = FALSE,
-  iconRotate = 0,
-  fontFamily = 'monospace',
-  text = NULL
+  extraClasses = NULL
 ) {
   if (!inherits(library, "formula")) {
     verifyIconLibrary(library)
   }
 
   icon = filterNULL(list(
-    icon = icon, library = library, markerColor = markerColor,
-    iconColor = iconColor, spin = spin, extraClasses = extraClasses,
-    squareMarker = squareMarker, iconRotate = iconRotate,
-    font = fontFamily, text = text
-
+    icon= icon, library = library, markerColor = markerColor,
+    iconColor = iconColor, spin = spin, extraClasses = extraClasses
   ))
   structure(icon, class = "leaflet_awesome_icon")
 }
@@ -165,20 +158,15 @@ makeAwesomeIcon <- function(
 #' @param icon Name of the icon
 #' @param library Which icon library. Default \code{'glyphicon'}, other possible
 #'   values are \code{'fa'} (fontawesome) or \code{'ion'} (ionicons).
-#' @param markerColor Possible values are \code{'red'}, \code{'darkred'}, \code{'lightred'}, \code{'orange'},
-#' \code{'beige'}, \code{'green'}, \code{'darkgreen'}, \code{'lightgreen'}, \code{'blue'},
-#' \code{'darkblue'}, \code{'lightblue'}, \code{'purple'}, \code{'darkpurple'}, \code{'pink'},
-#' \code{'cadetblue'}, \code{'white'}, \code{'gray'}, \code{'lightgray'}, \code{'black'}
+#' @param markerColor Possible values are \code{'red'}, \code{'darkred'},
+#'   \code{'orange'}, \code{'green'}, \code{'darkgreen'}, \code{'blue'},
+#'   \code{'purple'}, \code{'darkpuple'}, \code{'cadetblue'}
 #' @param iconColor The color to use for the icon itself. Use any CSS-valid
 #'   color (hex, rgba, etc.) or a named web color.
 #' @param spin If \code{TRUE}, make the icon spin (only works when \code{library
 #'   = 'fa'})
 #' @param extraClasses Additional css classes to include on the icon.
 #' @return A list of awesome-icon data that can be passed to the \code{icon}
-#' @param squareMarker Whether to use a sqare marker.
-#' @param iconRotate Rotate the icon by a given angle.
-#' @param fontFamily Used when \code{text} option is specified.
-#' @param text Use this text string instead of an icon.
 #'   argument of \code{\link{addAwesomeMarkers}()}.
 #' @export
 awesomeIcons <- function(
@@ -187,11 +175,7 @@ awesomeIcons <- function(
   markerColor = "blue",
   iconColor = "white",
   spin = FALSE,
-  extraClasses = NULL,
-  squareMarker = FALSE,
-  iconRotate = 0,
-  fontFamily = 'monospace',
-  text = NULL
+  extraClasses = NULL
 
 ) {
   if (!inherits(library, "formula")) {
@@ -200,9 +184,7 @@ awesomeIcons <- function(
 
   filterNULL(list(
     icon = icon, library = library, markerColor = markerColor,
-    iconColor = iconColor, spin = spin, extraClasses = extraClasses,
-    squareMarker = squareMarker, iconRotate = iconRotate,
-    font = fontFamily, text = text
+    iconColor = iconColor, spin = spin, extraClasses = extraClasses
   ))
 }
 
@@ -225,7 +207,6 @@ verifyIconLibrary <- function(library) {
 #'   the latitude column from \code{data})
 #' @param popup a character vector of the HTML content for the popups (you are
 #'   recommended to escape the text using \code{\link[htmltools]{htmlEscape}()}
-#' @param popupOptions A Vector of \code{\link{popupOptions}} to provide popups
 #'   for security reasons)
 #' @param layerId the layer id
 #' @param group the name of the group the newly created layers should belong to
@@ -248,11 +229,10 @@ verifyIconLibrary <- function(library) {
 #' @param options a list of extra options for tile layers, popups, paths
 #'   (circles, rectangles, polygons, ...), or other map elements
 #' @export
-addAwesomeMarkers <- function(
+addAwesomeMarkers = function(
   map, lng = NULL, lat = NULL, layerId = NULL, group = NULL,
   icon = NULL,
   popup = NULL,
-  popupOptions = NULL,
   label = NULL,
   labelOptions = NULL,
   options = markerOptions(),
@@ -290,10 +270,8 @@ addAwesomeMarkers <- function(
 
   pts = derivePoints(data, lng, lat, missing(lng), missing(lat), "addAwesomeMarkers")
   invokeMethod(
-    map, data, 'addAwesomeMarkers', pts$lat, pts$lng, icon, layerId,
-    group, options, popup, popupOptions,
-    clusterOptions, clusterId, safeLabel(label, data), labelOptions,
-    getCrosstalkOptions(data)
+    map, data, 'addAwesomeMarkers', pts$lat, pts$lng, icon, layerId, group, options, popup,
+    clusterOptions, clusterId, safeLabel(label, data), labelOptions
   ) %>% expandLimits(pts$lat, pts$lng)
 }
 

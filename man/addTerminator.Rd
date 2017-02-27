@@ -5,8 +5,7 @@
 \title{Add a daylight layer on top of the map}
 \usage{
 addTerminator(map, resolution = 2, time = NULL, layerId = NULL,
-  group = NULL, options = pathOptions(pointerEvents = "none", clickable =
-  FALSE))
+  group = NULL)
 }
 \arguments{
 \item{map}{a map widget object}
@@ -20,8 +19,6 @@ smaller step sizes and more points in the polygon. The default value is 2.}
 \item{layerId}{the layer id}
 
 \item{group}{the name of the group this layer belongs to.}
-
-\item{options}{the path options for the daynight layer}
 }
 \description{
 See \url{https://github.com/joergdietrich/Leaflet.Terminator}
@@ -34,4 +31,3 @@ leaf <- leaflet() \%>\%
   addTerminator()
 
 }
-

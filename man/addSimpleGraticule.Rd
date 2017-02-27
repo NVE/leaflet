@@ -6,8 +6,7 @@
 see \url{https://github.com/ablakey/Leaflet.SimpleGraticule}}
 \usage{
 addSimpleGraticule(map, interval = 20, showOriginLabel = TRUE,
-  redraw = "move", hidden = FALSE, zoomIntervals = list(),
-  layerId = NULL, group = NULL)
+  redraw = "move", layerId = NULL, group = NULL)
 }
 \arguments{
 \item{map}{a map widget object}
@@ -17,10 +16,6 @@ addSimpleGraticule(map, interval = 20, showOriginLabel = TRUE,
 \item{showOriginLabel}{true Whether or not to show '(0,0)' at the origin.}
 
 \item{redraw}{on which map event to redraw the graticule. On move is default but moveend can be smoother.}
-
-\item{hidden}{hide on start}
-
-\item{zoomIntervals}{use different intervals in different zoom levels. If not specified, all zoom levels use value in interval option.}
 
 \item{layerId}{the layer id}
 
@@ -33,9 +28,8 @@ see \url{https://github.com/ablakey/Leaflet.SimpleGraticule}
 \examples{
 library(leaflet)
 
-leaflet() \%>\%
+leaf <- leaflet() \%>\%
   addTiles() \%>\%
   addSimpleGraticule()
 
 }
-

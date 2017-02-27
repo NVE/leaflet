@@ -1,8 +1,7 @@
 library(leaflet)
 
 icon.glyphicon <- makeAwesomeIcon(icon= 'flag', markerColor = 'blue',
-                                  iconColor = 'black', library = 'glyphicon',
-                                  squareMarker =  TRUE)
+                                  iconColor = 'black', library = 'glyphicon')
 icon.fa <- makeAwesomeIcon(icon = 'flag', markerColor = 'red', library='fa',
                            iconColor = 'black')
 icon.ion <- makeAwesomeIcon(icon = 'home', markerColor = 'green',
@@ -54,7 +53,8 @@ cities <- cities %>% mutate(PopCat=ifelse(Pop <500000,'blue','red'))
 leaflet(cities) %>% addTiles() %>%
   addAwesomeMarkers(lng = ~Long, lat = ~Lat,
              label = ~City,
-             icon = icon.ion)
+             icon = icon.ion
+  )
 
 icon.pop <- awesomeIcons(icon = 'users',
                            markerColor = ifelse(cities$Pop <500000,'blue','red'),
@@ -64,16 +64,19 @@ icon.pop <- awesomeIcons(icon = 'users',
 leaflet(cities) %>% addTiles() %>%
   addAwesomeMarkers(lng = ~Long, lat = ~Lat,
              label = ~City,
-             icon = icon.pop)
+             icon = icon.pop
+  )
 
 # Make a list of icons (from two different icon libraries).
 # We'll index into it based on name.
 popIcons <- awesomeIconList(
   blue = makeAwesomeIcon(icon='user', library='glyphicon', markerColor = 'blue'),
-  red = makeAwesomeIcon(icon='users', library='fa', markerColor = 'red'))
+  red = makeAwesomeIcon(icon='users', library='fa', markerColor = 'red')
+)
 
 leaflet(cities) %>% addTiles() %>%
   addAwesomeMarkers(lng = ~Long, lat = ~Lat,
              label = ~City,
              labelOptions = rep(labelOptions(noHide = T),nrow(cities)),
-             icon = ~popIcons[PopCat] )
+             icon = ~popIcons[PopCat]
+  )

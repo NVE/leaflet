@@ -3,7 +3,6 @@
 ^\.travis\.yml$
 ^inst/csv
 ^inst/examples
-^inst/htmlwidgets/sources
 \.bower\.json$
 \.bowerrc$
 ^docs/
@@ -13,4 +12,3 @@
 ^package\.json$
 ^node_modules$
 
-^data-raw$
